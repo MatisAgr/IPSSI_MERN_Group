@@ -1,5 +1,4 @@
-const User = require("../Models/userModel");
-const Announce = require('../Models/announceModel');
+const User = require("../Models/usersModel");
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -126,8 +125,6 @@ const deleteUser = async (req, res) => {
     const userId = req.user.id;
     console.log("Delete request received:", userId);
 
-    // Supprimer les annonces associées à l'utilisateur
-    await Announce.deleteMany({ user: userId });
 
     // Supprimer l'utilisateur
     const user = await User.findByIdAndDelete(userId);
