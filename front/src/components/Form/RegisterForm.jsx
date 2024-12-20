@@ -42,7 +42,7 @@ export default function RegisterForm() {
 
         setIsLoading(true);
         try {
-            const response = await axios.post('http://localhost:8080/register', {
+            const response = await axios.post('http://localhost:8080/user/register', {
                 username,
                 email,
                 password
