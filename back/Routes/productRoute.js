@@ -6,7 +6,7 @@ const ownerCheckMiddleware = require("../Middleware/ownerCheckMiddleware");
 const { createProduct, updateProduct, deleteProduct, getAllProducts, getProductById, getProductsByUserId } = require("../Controllers/productController");
 
 router.post("/create", authMiddleware, createProduct);
-router.put("/update", ownerCheckMiddleware, updateProduct);
+router.put("/update/:id", ownerCheckMiddleware, updateProduct);
 router.delete("/delete/:id", ownerCheckMiddleware, deleteProduct);
 router.get("/get", getAllProducts);
 router.get("/get/:id", getProductById);

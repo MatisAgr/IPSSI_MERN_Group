@@ -14,6 +14,9 @@ const dbPort = process.env.DB_PORT;
 const dbName = process.env.DB_NAME;
 const dbUrl = `${dbDialect}://${dbHost}:${dbPort}/${dbName}`;
 
+const userRoute = require("./Routes/userRoute");
+const productRoute = require("./Routes/productRoute");
+
 mongoose
   .connect(dbUrl, {})
   .then(() => {
@@ -27,8 +30,8 @@ mongoose
 
 app.use(cors());
 
-const routes = require("./routes");
-app.use("/", routes);
+app.use("/user", userRoute);
+app.use("/product", productRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

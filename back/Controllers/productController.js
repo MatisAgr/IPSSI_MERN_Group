@@ -1,5 +1,6 @@
-const Product = require("../Models/usersProduct");
+const Product = require("../Models/productsModel");
 const User = require("../Models/usersModel");
+const jwt = require("jsonwebtoken");
 
 const dotenv = require("dotenv");
 
@@ -10,7 +11,11 @@ const createProduct = async (req, res) => {
     try {
         console.log("Product creation request received:", req.body);
     
-        const { name, description, price, category, owner } = req.body;
+        const { name, description, price, category } = req.body;
+
+        token = req.headers.authorization?.split(" ")[1];
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const owner = decodedToken.id;
     
         if (!name || !price || !category || !owner) {
         console.log("All fields are required");
@@ -37,24 +42,20 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-        console.log("Product update request received:", req.body);
+        const { id } = req.params;
+        const { name, description, price, category } = req.body;
     
-        const { name, description, price, category, owner } = req.body;
-    
-        if (!name || !price || !category || !owner) {
+        if (!name || !price || !category) {
         console.log("All fields are required");
         return res.status(400).json({ error: "Tous les champs sont requis" });
         }
     
-        const product = new Product({
-        name,
-        description,
-        price,
-        category,
-        owner,
-        });
+        const product = await Product.findByIdAndUpdate(
+        id,
+        { name, description, price, category },
+        { new: true }
+        );
     
-        await product.save();
         console.log("Product updated:", product);
     
         res.status(201).json({ message: "Produit mis à jour avec succès", product });
@@ -98,8 +99,8 @@ const getAllProducts = async (req, res) => {
 const getProductsByUserId = async (req, res) => {
     try {
       const products = await Product.find({ owner: req.params.userId }).populate(
-        "owner",
-        "username email"
+        "owner", // Champ "owner" référencé dans le schéma
+        "username email" // Champs peuplés depuis le modèle "Users"
       );
   
       if (!products || products.length === 0) {
@@ -112,7 +113,8 @@ const getProductsByUserId = async (req, res) => {
       res.status(500).send({ message: "Erreur lors de la récupération des produits" });
     }
   };
-
+  
+ 
 const getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
