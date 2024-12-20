@@ -47,6 +47,7 @@ const updateProduct = async (req, res) => {
         const { name, description, price, category, images } = req.body;
     
         if (!name || !price || !category || images) {
+          console.log(name, price, category, images);
         console.log("All fields are required");
         return res.status(400).json({ error: "Tous les champs sont requis" });
         }

@@ -149,7 +149,7 @@ export default function ProfilePage() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8080/announce/${announceId}`, {
+      await axios.delete(`http://localhost:8080/product/delete/${announceId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
