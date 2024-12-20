@@ -11,13 +11,13 @@ const createProduct = async (req, res) => {
     try {
         console.log("Product creation request received:", req.body);
     
-        const { name, description, price, category } = req.body;
+        const { name, description, price, category, images } = req.body;
 
         token = req.headers.authorization?.split(" ")[1];
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const owner = decodedToken.id;
     
-        if (!name || !price || !category || !owner) {
+        if (!name || !price || !category || images || !owner) {
         console.log("All fields are required");
         return res.status(400).json({ error: "Tous les champs sont requis" });
         }
@@ -27,6 +27,7 @@ const createProduct = async (req, res) => {
         description,
         price,
         category,
+        images,
         owner,
         });
     
@@ -43,16 +44,16 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, description, price, category } = req.body;
+        const { name, description, price, category, images } = req.body;
     
-        if (!name || !price || !category) {
+        if (!name || !price || !category || images) {
         console.log("All fields are required");
         return res.status(400).json({ error: "Tous les champs sont requis" });
         }
     
         const product = await Product.findByIdAndUpdate(
         id,
-        { name, description, price, category },
+        { name, description, price, category, images },
         { new: true }
         );
     
@@ -97,23 +98,22 @@ const getAllProducts = async (req, res) => {
 };
 
 const getProductsByUserId = async (req, res) => {
-    try {
-      const products = await Product.find({ owner: req.params.userId }).populate(
-        "owner", // Champ "owner" référencé dans le schéma
-        "username email" // Champs peuplés depuis le modèle "Users"
-      );
-  
-      if (!products || products.length === 0) {
-        return res.status(404).send({ error: "Aucun produit trouvé pour cet utilisateur" });
-      }
-  
-      res.status(200).send(products);
-    } catch (error) {
-      console.error("Error fetching products by user ID:", error.message);
-      res.status(500).send({ message: "Erreur lors de la récupération des produits" });
+  try {
+    const products = await Product.find({ owner: req.params.userId }).populate(
+      "owner", // Champ "owner" référencé dans le schéma
+      "username email" // Champs peuplés depuis le modèle "Users"
+    );
+
+    if (!products || products.length === 0) {
+      return res.status(404).send({ error: "Aucun produit trouvé pour cet utilisateur" });
     }
-  };
-  
+
+    res.status(200).send(products);
+  } catch (error) {
+    console.error("Error fetching products by user ID:", error.message);
+    res.status(500).send({ message: "Erreur lors de la récupération des produits" });
+  }
+};
  
 const getProductById = async (req, res) => {
     try {
