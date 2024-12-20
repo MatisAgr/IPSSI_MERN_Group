@@ -13,7 +13,6 @@ export default function CreateAnnouncePage() {
     description: '',
     price: '',
     category: '',
-    location: '',
     images: '',
     user: ''
   });
@@ -36,11 +35,11 @@ export default function CreateAnnouncePage() {
         }
       });
       console.log(response.data);
-      alert('Annonce créée avec succès');
+      alert('Produit créé avec succès');
       navigate('/');
     } catch (error) {
-      console.error('Erreur lors de la création de l\'annonce', error);
-      alert('Erreur lors de la création de l\'annonce');
+      console.error('Erreur lors de la création du produit', error);
+      alert('Erreur lors de la création du produit');
     }
   };
 
@@ -48,7 +47,7 @@ export default function CreateAnnouncePage() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-4xl flex">
         <div className="w-1/2 pr-4">
-          <h1 className="text-2xl font-bold mb-6">Créer une annonce</h1>
+          <h1 className="text-2xl font-bold mb-6">Créer un produit</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
@@ -117,9 +116,6 @@ export default function CreateAnnouncePage() {
               </select>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="location">
-                Lieu
-              </label>
               <input
                 type="text"
                 name="location"
@@ -155,13 +151,12 @@ export default function CreateAnnouncePage() {
           </form>
         </div>
         <div className="w-1/2 pl-4">
-          <h2 className="text-xl font-bold mb-4">Aperçu de l'annonce</h2>
+          <h2 className="text-xl font-bold mb-4">Aperçu du produit</h2>
           <CardAnnouce
             title={formData.title}
             description={formData.description}
             price={formData.price}
             category={formData.category}
-            location={formData.location}
             images={[formData.images]}
             createdAt={new Date().toLocaleDateString()}
             user="Vous"
