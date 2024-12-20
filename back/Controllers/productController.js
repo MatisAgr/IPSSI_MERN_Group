@@ -88,7 +88,7 @@ const deleteProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find().populate('user', 'username email');
         console.log("All products:", products);
         res.status(200).json({ products });
     } catch (error) {
