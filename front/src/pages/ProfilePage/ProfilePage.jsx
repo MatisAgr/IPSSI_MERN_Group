@@ -105,7 +105,7 @@ export default function ProfilePage() {
     setEditAnnounceMode(true);
     setAnnounceData({
       id: announce._id,
-      title: announce.title,
+      name: announce.name,
       description: announce.description,
       price: announce.price,
       category: announce.category,
@@ -125,7 +125,7 @@ export default function ProfilePage() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put(`http://localhost:8080/announce/${announceData.id}`, announceData, {
+      const response = await axios.put(`http://localhost:8080/product/update/${announceData.id}`, announceData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -331,11 +331,11 @@ export default function ProfilePage() {
         <Modal.Body>
           <form onSubmit={handleAnnounceSubmit}>
             <div className="mb-4">
-              <Label htmlFor="title" value="Titre" />
+              <Label htmlFor="name" value="Name" />
               <TextInput
-                id="title"
-                name="title"
-                value={announceData.title}
+                id="name"
+                name="name"
+                value={announceData.name}
                 onChange={handleAnnounceChange}
                 required
               />
