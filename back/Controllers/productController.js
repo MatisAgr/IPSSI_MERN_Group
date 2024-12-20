@@ -88,7 +88,7 @@ const deleteProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
     try {
-        const products = await Product.find().populate('user', 'username email');
+        const products = await Product.find().populate('owner', 'username');
         console.log("All products:", products);
         res.status(200).json({ products });
     } catch (error) {
@@ -125,4 +125,16 @@ const getProductById = async (req, res) => {
         res.status(400).json({ error: "Erreur lors de la récupération du produit" });
     }
 };
-module.exports = { createProduct, updateProduct, deleteProduct, getAllProducts, getProductsByUserId, getProductById };
+
+const getUserProducts = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const products = await Product.find({ owner: userId });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json({ error: 'Error fetching user products', details: error.message });
+  }
+};
+
+
+module.exports = { createProduct, updateProduct, deleteProduct, getAllProducts, getProductsByUserId, getProductById, getUserProducts };

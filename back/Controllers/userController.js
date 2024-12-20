@@ -1,4 +1,5 @@
 const User = require("../Models/usersModel");
+const Product = require("../Models/productsModel")
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -143,16 +144,27 @@ const deleteUser = async (req, res) => {
 const getUserProfile = async (req, res) => {
   try {
     const userId = req.user.id;
-    const user = await User.findById(userId).select('-password'); 
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    res.status(200).json(user);
+    const userProfile = await User.findById(userId).select('-password');
+    res.status(200).json({ userProfile });
   } catch (error) {
-    console.log("Error fetching user profile:", error.message);
+    console.error("Error fetching products by user ID:", error.message);
+    res.status(500).json({ error: "Erreur lors de la récupération des produits" });
+  }
+};
+
+const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId).select('-password');
+    if (!user) {
+      console.log("User not found");
+      return res.status(404).send({ error: "User not found" });
+    }
+    console.log("User found:", user);
+    res.status(200).send(user);
+  } catch (error) {
+    console.log("Error getting user by ID:", error.message);
     res.status(400).send({ error: error.message });
   }
 };
 
-
-module.exports = { registerUser, loginUser, updateUser, deleteUser, getUserProfile };
+module.exports = { registerUser, loginUser, updateUser, deleteUser, getUserProfile, getUserById };

@@ -30,15 +30,16 @@ export default function ProfilePage() {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8080/user/me', {
+        const response = await axios.get('http://localhost:8080/user/get/me', {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
-        setUser(response.data);
+        console.log(response.data.userProfile);
+        setUser(response.data.userProfile);
         setFormData({
-          username: response.data.username,
-          email: response.data.email,
+          username: response.data.userProfile.username,
+          email: response.data.userProfile.email,
           password: '',
           confirmPassword: ''
         });
@@ -57,7 +58,7 @@ export default function ProfilePage() {
     const fetchAnnounces = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8080/announces/me', {
+        const response = await axios.get('http://localhost:8080/product/myproduct', {
           headers: {
             Authorization: `Bearer ${token}`
           }
