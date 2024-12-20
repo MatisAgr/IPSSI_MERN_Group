@@ -90,16 +90,15 @@ export default function AnnouncePage() {
               className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             >
               <option value="">Sélectionnez une catégorie</option>
-              <option value="Électronique">Électronique</option>
-              <option value="Vêtements">Vêtements</option>
-              <option value="Maison">Maison</option>
-              <option value="Jardin">Jardin</option>
-              <option value="Véhicules">Véhicules</option>
-              <option value="Loisirs">Loisirs</option>
-              <option value="Sport">Sport</option>
-              <option value="Livres">Livres</option>
-              <option value="Jeux">Jeux</option>
-              <option value="Autres">Autres</option>
+              <option value="Suppléments">Suppléments</option>
+                <option value="Vêtements">Vêtements</option>
+                <option value="Pré-entrainement">Pré-entrainement</option>
+                <option value="Salon">Salon</option>
+                <option value="SARMs">SARMs</option>
+                <option value="Loisirs">Loisirs</option>
+                <option value="Machine">Machine</option>
+                <option value="Livres">Livres</option>
+                <option value="Autres">Autres</option>
             </select>
           </div>
 
