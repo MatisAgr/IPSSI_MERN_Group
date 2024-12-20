@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { Footer } from "flowbite-react";
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
+import Logo from '../../pics/finalFormLogo.png';
 
 export default function FooterComponent() {
   return (
@@ -11,16 +11,17 @@ export default function FooterComponent() {
           <div>
             <Footer.Brand
               href="https://flowbite.com"
-              src="https://www.geek-chretien.fr/wp-content/uploads/2018/01/logo-leboncoin.png"
+              src={Logo}
               alt="Logo"
-              name={<span className="text-white">Le Coin Bon</span>}
+              name={<span className="text-white">WebLift</span>}
+              className='h-12 w-12 mr-2'
               />
           </div>
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
               <Footer.Title title="about" className="text-gray-400" />
               <Footer.LinkGroup col>
-                <Footer.Link href="#" className="text-gray-400">Le Coin Bon</Footer.Link>
+                <Footer.Link href="#" className="text-gray-400">WebLift</Footer.Link>
                 <Footer.Link href="#" className="text-gray-400">Tailwind CSS</Footer.Link>
               </Footer.LinkGroup>
             </div>
@@ -42,7 +43,7 @@ export default function FooterComponent() {
         </div>
         <Footer.Divider className="border-gray-700" />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright href="#" by="Le Coin Bon™" year={2024} className="text-gray-400" />
+          <Footer.Copyright href="#" by="WebLift™" year={2024} className="text-gray-400" />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <Footer.Icon href="#" icon={BsFacebook} className="text-gray-400" />
             <Footer.Icon href="#" icon={BsInstagram} className="text-gray-400" />

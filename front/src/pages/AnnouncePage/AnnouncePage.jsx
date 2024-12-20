@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Carousel } from 'flowbite-react';
 import CardAnnouce from '../../components/Card/CardAnnouce';
+import Logo from '../../pics/finalFormLogoNoBg.png';
+import Image1 from '../../pics/manThink.jpg';
+import Image2 from '../../pics/bigSchwarzy.jpg';
+import Image3 from '../../pics/cBumMoon.jpg';
+import Image4 from '../../pics/ronnieColeman.png';
+import Image5 from '../../pics/ippoMatch.jpg';
 
 export default function AnnouncePage() {
   const [announces, setAnnounces] = useState([]);
@@ -37,18 +43,19 @@ export default function AnnouncePage() {
   });
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-grey-900 min-h-screen">
       <main className="container mx-auto p-4">
-        <h1 className="text-4xl font-bold text-center mb-8">Welcome to Le Coin Bon</h1>
+        <img src={Logo} className='block mx-auto w-40' />
+        <h1 className="text-5xl font-bold text-center mb-8 text-white">WebLift</h1>
 
         <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 mb-8">
           <Carousel>
-            <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg" alt="..." />
-            <img src="https://flowbite.com/docs/images/carousel/carousel-2.svg" alt="..." />
-            <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg" alt="..." />
-            <img src="https://flowbite.com/docs/images/carousel/carousel-4.svg" alt="..." />
-            <img src="https://flowbite.com/docs/images/carousel/carousel-5.svg" alt="..." />
-          </Carousel>
+            <img src={Image1} alt="..." className='object-cover object-top w-full h-full' />
+            <img src={Image2} alt="..." className='object-cover object-top w-full h-full' />
+            <img src={Image3} alt="..." className='object-cover object-top w-full h-full' />
+            <img src={Image4} alt="..." className='object-cover object-top w-full h-full' />
+            <img src={Image5} alt="..." className='object-cover object-top w-full h-full' />
+          </Carousel> 
         </div>
 
 

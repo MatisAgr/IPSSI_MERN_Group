@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaUser, FaSignInAlt, FaUserPlus, FaSignOutAlt, FaPlusCircle } from 'react-icons/fa';
+import Logo from '../../pics/finalFormLogo.png';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -18,11 +19,11 @@ export default function Navbar() {
         <div className="text-white text-lg font-bold">
           <NavLink to="/" className="flex items-center text-white">
             <img
-              src="https://www.geek-chretien.fr/wp-content/uploads/2018/01/logo-leboncoin.png"
+              src={Logo}
               alt="Logo"
-              className="h-8 w-8 mr-2"
+              className="h-10 w-10 mr-2"
             />
-            Le Coin Bon
+            WebLift
           </NavLink>
         </div>
         <div className="space-x-4 flex items-center">
@@ -40,7 +41,7 @@ export default function Navbar() {
               <NavLink
                 to="/createAnnonce"
                 className={({ isActive }) =>
-                  isActive ? "bg-green-700 text-white rounded px-3 py-2 flex items-center" : "bg-green-500 text-white hover:bg-green-700 rounded px-3 py-2 flex items-center"
+                  isActive ? "bg-gray-300 text-white rounded px-3 py-2 flex items-center" : "bg-gray-500 text-white hover:bg-gray-300 rounded px-3 py-2 flex items-center"
                 }
               >
                 <FaPlusCircle className="mr-1" />
