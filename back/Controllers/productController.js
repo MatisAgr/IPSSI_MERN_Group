@@ -69,21 +69,26 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     try {
-        const { id } = req.params.id;
-    
+        const { id } = req.params;
+
         if (!id) {
-        console.log("All fields are required");
-        return res.status(400).json({ error: "Tous les champs sont requis" });
+            console.log("Product ID is required");
+            return res.status(400).json({ error: "Product ID is required" });
         }
-    
+
         const product = await Product.findByIdAndDelete(id);
-    
+
+        if (!product) {
+            console.log("Product not found");
+            return res.status(404).json({ error: "Product not found" });
+        }
+
         console.log("Product deleted:", product);
-    
-        res.status(201).json({ message: "Produit supprimé avec succès", product });
+
+        res.status(200).json({ message: "Product deleted successfully", product });
     } catch (error) {
         console.log("Error deleting product:", error.message);
-        res.status(400).json({ error: "Erreur lors de la suppression du produit" });
+        res.status(400).json({ error: "Error deleting product" });
     }
 };
 
