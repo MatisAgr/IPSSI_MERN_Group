@@ -75,7 +75,7 @@ export default function AnnouncePage() {
 
         <hr className="my-8 border-gray-300 border-5 h-2 rounded-full bg-gray-300" />
 
-        <h2 className="text-2xl font-bold mb-4 mt-5">Produits</h2>
+        <h2 className="text-2xl font-bold mb-4 mt-5 text-white">Produits</h2>
 
         <div className="mb-4 flex space-x-4 bg-gray-500 p-4 rounded-2xl shadow">
           <div>
