@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function CardAnnouce({ id, title, description, price, category, location, images, createdAt, user }) {
+export default function CardAnnouce({ id, title, description, price, category, images, user }) {
   return (
     <div className="w-full rounded-3xl overflow-hidden shadow-lg bg-white">
       {images[0] && (
@@ -17,7 +17,6 @@ export default function CardAnnouce({ id, title, description, price, category, l
       </div>
       <div className="px-6 pt-4 pb-2">
         <span className="text-gray-600 text-sm">Publié par: {user}</span>
-        <span className="text-gray-600 text-sm float-right">Le: {createdAt}</span>
       </div>
       <div className="px-6 py-4">
       <Link to={id ? `/announce/detail?id=${id}` : '#'}>
