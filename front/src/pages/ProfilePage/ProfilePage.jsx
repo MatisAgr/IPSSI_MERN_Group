@@ -23,7 +23,6 @@ export default function ProfilePage() {
     price: '',
     category: '',
     images: '',
-    location: ''
   });
 
   useEffect(() => {
@@ -110,8 +109,7 @@ export default function ProfilePage() {
       description: announce.description,
       price: announce.price,
       category: announce.category,
-      images: announce.images,
-      location: announce.location
+      images: announce.images
     });
   };
 
@@ -319,7 +317,6 @@ export default function ProfilePage() {
               description={announce.description}
               price={announce.price}
               category={announce.category}
-              location={announce.location}
               images={announce.images}
               createdAt={new Date(announce.createdAt).toLocaleDateString()}
               user={user.username}
@@ -374,27 +371,16 @@ export default function ProfilePage() {
                 required
               >
                 <option value="">Sélectionnez une catégorie</option>
-                <option value="Électronique">Électronique</option>
+                <option value="Suppléments">Suppléments</option>
                 <option value="Vêtements">Vêtements</option>
-                <option value="Maison">Maison</option>
-                <option value="Jardin">Jardin</option>
-                <option value="Véhicules">Véhicules</option>
+                <option value="Pré-entrainement">Pré-entrainement</option>
+                <option value="Salon">Salon</option>
+                <option value="SARMs">SARMs</option>
                 <option value="Loisirs">Loisirs</option>
-                <option value="Sport">Sport</option>
+                <option value="Machine">Machine</option>
                 <option value="Livres">Livres</option>
-                <option value="Jeux">Jeux</option>
                 <option value="Autres">Autres</option>
               </Select>
-            </div>
-            <div className="mb-4">
-              <Label htmlFor="location" value="Lieu" />
-              <TextInput
-                id="location"
-                name="location"
-                value={announceData.location}
-                onChange={handleAnnounceChange}
-                required
-              />
             </div>
             <div className="mb-4">
               <Label htmlFor="images" value="Image (URL)" />
