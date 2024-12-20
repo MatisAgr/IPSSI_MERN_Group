@@ -10,21 +10,21 @@ import Image4 from '../../pics/ronnieColeman.png';
 import Image5 from '../../pics/ippoMatch.jpg';
 
 export default function AnnouncePage() {
-  const [announces, setAnnounces] = useState([]);
+  const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    const fetchAnnounces = async () => {
+    const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/announces');
-        setAnnounces(response.data);
+        const response = await axios.get('http://localhost:8080/product/get');
+        setProducts(response.data.products || []); // Ensure response data is an array
       } catch (error) {
-        console.error('Erreur lors de la récupération des annonces', error);
+        console.error('Erreur lors de la récupération des produits', error);
       }
     };
 
-    fetchAnnounces();
+    fetchProducts();
   }, []);
 
   const handleCategoryChange = (event) => {
@@ -35,12 +35,12 @@ export default function AnnouncePage() {
     setSearchTerm(event.target.value);
   };
 
-  const filteredAnnounces = announces.filter((announce) => {
+  const filteredProducts = Array.isArray(products) ? products.filter((product) => {
     return (
-      (selectedCategory ? announce.category === selectedCategory : true) &&
-      (searchTerm ? announce.title.toLowerCase().includes(searchTerm.toLowerCase()) : true)
+      (selectedCategory ? product.category === selectedCategory : true) &&
+      (searchTerm ? product.name.toLowerCase().includes(searchTerm.toLowerCase()) : true)
     );
-  });
+  }) : [];
 
   return (
     <div className="bg-grey-900 min-h-screen">
@@ -58,7 +58,6 @@ export default function AnnouncePage() {
           </Carousel> 
         </div>
 
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white p-4 rounded shadow">
             <h2 className="text-xl font-bold mb-2">Noël</h2>
@@ -70,13 +69,13 @@ export default function AnnouncePage() {
           </div>
           <div className="bg-white p-4 rounded shadow">
             <h2 className="text-xl font-bold mb-2">Été</h2>
-            <p>Découvrez les dernières annonces pour l'été.</p>
+            <p>Découvrez les dernières produits pour l'été.</p>
           </div>
         </div>
 
         <hr className="my-8 border-gray-300 border-5 h-2 rounded-full bg-gray-300" />
 
-        <h2 className="text-2xl font-bold mb-4 mt-5">Annonces</h2>
+        <h2 className="text-2xl font-bold mb-4 mt-5">Produits</h2>
 
         <div className="mb-4 flex space-x-4 bg-gray-500 p-4 rounded-2xl shadow">
           <div>
@@ -121,18 +120,16 @@ export default function AnnouncePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-          {filteredAnnounces.map((announce) => (
+          {filteredProducts.map((product) => (
             <CardAnnouce
-              key={announce._id}
-              id={announce._id}
-              title={announce.title}
-              description={announce.description}
-              price={announce.price}
-              category={announce.category}
-              location={announce.location}
-              images={announce.images}
-              createdAt={new Date(announce.createdAt).toLocaleDateString()}
-              user={announce.user.username}
+              key={product._id}
+              id={product._id}
+              title={product.name}
+              description={product.description}
+              price={product.price}
+              category={product.category}
+              images={product.images}
+              user={product.owner.username}
             />
           ))}
         </div>
