@@ -128,7 +128,7 @@ export default function AnnouncePage() {
               price={product.price}
               category={product.category}
               images={product.images}
-              user={product.owner.username}
+              user={product.owner ? product.owner.username : 'Utilisateur Supprimé'}
             />
           ))}
         </div>
