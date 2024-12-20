@@ -313,7 +313,7 @@ export default function ProfilePage() {
             </div>
             <CardAnnouce
               id={announce._id}
-              title={announce.title}
+              title={announce.name}
               description={announce.description}
               price={announce.price}
               category={announce.category}
