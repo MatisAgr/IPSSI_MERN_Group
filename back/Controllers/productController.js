@@ -9,35 +9,35 @@ dotenv.config();
 
 const createProduct = async (req, res) => {
     try {
-        console.log("Product creation request received:", req.body);
-    
-        const { name, description, price, category, images } = req.body;
-
-        token = req.headers.authorization?.split(" ")[1];
-        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-        const owner = decodedToken.id;
-    
-        if (!name || !price || !category || images || !owner) {
+      console.log("Product creation request received:", req.body);
+  
+      const { name, description, price, category, images } = req.body;
+  
+      token = req.headers.authorization?.split(" ")[1];
+      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      const owner = decodedToken.id;
+  
+      if (!name || !price || !category || !images || !owner) {
         console.log("All fields are required");
-        return res.status(400).json({ error: "Tous les champs sont requis" });
-        }
-    
-        const product = new Product({
+        return res.status(400).json({ error: "All fields are required" });
+      }
+  
+      const product = new Product({
         name,
         description,
         price,
         category,
         images,
         owner,
-        });
-    
-        await product.save();
-        console.log("Product created:", product);
-    
-        res.status(201).json({ message: "Produit créé avec succès", product });
+      });
+  
+      await product.save();
+      console.log("Product created:", product);
+  
+      res.status(201).json({ message: "Produit créé avec succès", product });
     } catch (error) {
-        console.log("Error creating product:", error.message);
-        res.status(400).json({ error: "Erreur lors de la création du produit" });
+      console.log("Error creating product:", error.message);
+      res.status(400).json({ error: "Erreur lors de la création du produit" });
     }
 };
 

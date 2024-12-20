@@ -9,12 +9,12 @@ export default function CreateAnnouncePage() {
 
   
   const [formData, setFormData] = useState({
-    title: '',
+    name: '',
     description: '',
     price: '',
     category: '',
     images: '',
-    user: ''
+    owner: ''
   });
 
   const handleChange = (e) => {
@@ -28,7 +28,7 @@ export default function CreateAnnouncePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/create', formData, {
+      const response = await axios.post('http://localhost:8080/product/create', formData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Assuming you have a token stored in localStorage
@@ -49,20 +49,20 @@ export default function CreateAnnouncePage() {
         <div className="w-1/2 pr-4">
           <h1 className="text-2xl font-bold mb-6">Créer un produit</h1>
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                Titre
-              </label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                value={formData.title}
-                onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
-              />
-            </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+              Nom
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
                 Description
@@ -116,17 +116,6 @@ export default function CreateAnnouncePage() {
               </select>
             </div>
             <div className="mb-4">
-              <input
-                type="text"
-                name="location"
-                id="location"
-                value={formData.location}
-                onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
-              />
-            </div>
-            <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="images">
                 Image (URL)
               </label>
@@ -153,13 +142,13 @@ export default function CreateAnnouncePage() {
         <div className="w-1/2 pl-4">
           <h2 className="text-xl font-bold mb-4">Aperçu du produit</h2>
           <CardAnnouce
-            title={formData.title}
+            title={formData.name}
             description={formData.description}
             price={formData.price}
             category={formData.category}
             images={[formData.images]}
             createdAt={new Date().toLocaleDateString()}
-            user="Vous"
+            owner="Vous"
           />
         </div>
       </div>
