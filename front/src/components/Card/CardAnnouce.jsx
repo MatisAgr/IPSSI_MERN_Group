@@ -14,7 +14,6 @@ export default function CardAnnouce({ id, title, description, price, category, l
       <div className="px-6 pt-4 pb-2">
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Prix: {price}€</span>
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Catégorie: {category}</span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Lieu: {location}</span>
       </div>
       <div className="px-6 pt-4 pb-2">
         <span className="text-gray-600 text-sm">Publié par: {user}</span>
