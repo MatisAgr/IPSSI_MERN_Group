@@ -127,7 +127,11 @@ const deleteUser = async (req, res) => {
     console.log("Delete request received:", userId);
 
 
+
+    // Supprimer les produits associés à l'utilisateur
+    await Product.deleteMany({ owner: userId });
     // Supprimer l'utilisateur
+
     const user = await User.findByIdAndDelete(userId);
     if (!user) {
       console.log("User not found");
