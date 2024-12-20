@@ -46,10 +46,9 @@ const updateProduct = async (req, res) => {
         const { id } = req.params;
         const { name, description, price, category, images } = req.body;
     
-        if (!name || !price || !category || images) {
-          console.log(name, price, category, images);
-        console.log("All fields are required");
-        return res.status(400).json({ error: "Tous les champs sont requis" });
+        if (!name || !price || !category || !images || images.length === 0) {
+            console.log("All fields are required");
+            return res.status(400).json({ error: "Tous les champs sont requis" });
         }
     
         const product = await Product.findByIdAndUpdate(
