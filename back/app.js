@@ -8,11 +8,8 @@ app.use(express.json());
 const PORT = process.env.SERVER_PORT || 8080;
 
 const mongoose = require("mongoose");
-const dbDialect = process.env.DB_DIALECT;
-const dbHost = process.env.DB_HOST;
-const dbPort = process.env.DB_PORT;
-const dbName = process.env.DB_NAME;
-const dbUrl = `${dbDialect}://${dbHost}:${dbPort}/${dbName}`;
+const dbURL = process.env.DB_URL;
+const dbUrl = `${dbURL}`;
 
 const userRoute = require("./Routes/userRoute");
 const productRoute = require("./Routes/productRoute");
