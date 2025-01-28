@@ -17,7 +17,7 @@ export default function AnnouncePage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/product/get');
+        const response = await axios.get('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/product/get');
         setProducts(response.data.products || []); // Ensure response data is an array
       } catch (error) {
         console.error('Erreur lors de la récupération des produits', error);
