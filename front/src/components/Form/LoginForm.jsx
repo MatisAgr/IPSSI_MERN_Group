@@ -34,7 +34,7 @@ export default function LoginForm() {
 
         setIsLoading(true);
         try {
-            const response = await axios.post('http://localhost:8080/user/login', {
+            const response = await axios.post('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/user/login', {
                 email,
                 password
             });

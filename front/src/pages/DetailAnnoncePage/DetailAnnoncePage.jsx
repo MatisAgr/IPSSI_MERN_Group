@@ -14,11 +14,11 @@ export default function DetailAnnoncePage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/product/get/${id}`);
+        const response = await axios.get(`http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/product/get/${id}`);
         console.log(response.data.product);
         setProduct(response.data.product);
         try {
-          const repUserById = await axios.get(`http://localhost:8080/user/getid/${response.data.product.owner}`);
+          const repUserById = await axios.get(`http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/user/getid/${response.data.product.owner}`);
           console.log(repUserById.data);
           setProduct(prevProduct => ({ ...prevProduct, owner: repUserById.data }));
         } catch (error) {

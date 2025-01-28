@@ -29,7 +29,7 @@ export default function ProfilePage() {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8080/user/get/me', {
+        const response = await axios.get('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/user/get/me', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -57,7 +57,7 @@ export default function ProfilePage() {
     const fetchAnnounces = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8080/product/myproduct', {
+        const response = await axios.get('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/product/myproduct', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -87,7 +87,7 @@ export default function ProfilePage() {
     }
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:8080/user/update/me', formData, {
+      const response = await axios.put('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/user/update/me', formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -125,7 +125,7 @@ export default function ProfilePage() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put(`http://localhost:8080/product/update/${announceData.id}`, announceData, {
+      const response = await axios.put(`http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/product/update/${announceData.id}`, announceData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -149,7 +149,7 @@ export default function ProfilePage() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8080/product/delete/${announceId}`, {
+      await axios.delete(`http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/product/delete/${announceId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -170,7 +170,7 @@ export default function ProfilePage() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete('http://localhost:8080/user/delete/me', {
+      await axios.delete('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/user/delete/me', {
         headers: {
           Authorization: `Bearer ${token}`
         }

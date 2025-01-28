@@ -17,7 +17,7 @@ const productRoute = require("./Routes/productRoute");
 mongoose
   .connect(dbUrl, {})
   .then(() => {
-    console.log(`Connected to the ${dbDialect} database!`);
+    console.log(`Connected to the MongoDB database!`);
   })
   .catch((err) => {
     console.log("Cannot connect to the database!", err);

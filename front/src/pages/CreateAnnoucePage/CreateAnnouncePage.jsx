@@ -28,7 +28,7 @@ export default function CreateAnnouncePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/product/create', formData, {
+      const response = await axios.post('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/product/create', formData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Assuming you have a token stored in localStorage
