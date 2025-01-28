@@ -2,8 +2,6 @@ require('dotenv').config();
 
 const express = require("express");
 const cors = require("cors");
-const ws = require("ws"); // Import ws
-const WebSocket = require("ws");
 const app = express();
 app.use(express.json());
 
