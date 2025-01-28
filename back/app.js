@@ -9,17 +9,6 @@ app.use(express.json());
 
 const PORT = process.env.SERVER_PORT || 8080;
 
-const wss = new WebSocket.Server({ port: 8080 });
-
-wss.on("connection", function connection(ws) {
-  console.log("New client connected");
-
-  ws.on("message", function incoming(message) {
-      console.log("received: %s", message);
-      ws.send("le message a ete recu");
-  });
-});
-
 const mongoose = require("mongoose");
 const dbURL = process.env.DB_URL;
 const dbUrl = `${dbURL}`;
