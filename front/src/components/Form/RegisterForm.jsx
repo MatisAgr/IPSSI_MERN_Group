@@ -42,7 +42,7 @@ export default function RegisterForm() {
 
         setIsLoading(true);
         try {
-            const response = await axios.post('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com:8080/user/register', {
+            const response = await axios.post('http://Groupe5backnode-env.eba-52t5k2gf.eu-north-1.elasticbeanstalk.com/user/register', {
                 username,
                 email,
                 password
